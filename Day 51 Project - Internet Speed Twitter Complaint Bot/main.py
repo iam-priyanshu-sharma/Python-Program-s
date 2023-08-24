@@ -1,23 +1,17 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.chrome.service import Service as ChromeService
 import time
 
 PROMISED_DOWN = 100
 PROMISED_UP = 100
-CHROME_DRIVER_PATH = "E:\BCA\Program's\chromedriver-win64\chromedriver.exe"
 TWITTER_EMAIL = "YOUR TWITTER EMAIL"
 TWITTER_PASSWORD = "YOUR TWITTER PASSWORD"
 
 
 class InternetSpeedTwitterBot:
-    def __init__(self, driver_path):
-        chrome_options = webdriver.ChromeOptions()
-        chrome_options.add_experimental_option("detach", True)
-
-        service = ChromeService(executable_path=driver_path)
-        self.driver = webdriver.Chrome(service=service, options=chrome_options)
+    def __init__(self):
+        self.driver = webdriver.Chrome()
         self.up = 0
         self.down = 0
 
@@ -71,6 +65,6 @@ class InternetSpeedTwitterBot:
         self.driver.quit()
 
 
-bot = InternetSpeedTwitterBot(CHROME_DRIVER_PATH)
+bot = InternetSpeedTwitterBot()
 bot.get_internet_speed()
 bot.tweet_at_provider()
